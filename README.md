@@ -12,7 +12,7 @@
 
 - Imútavel: cada execução D-1 grava uma nova linha sem sobrescrever o passado.
 - Histórica: permite ver o GMV em qualquer data de processamento.
-- Performática: partição pelo campo TRANSACTION_DATE e chave composta evitando duplicidades.
+- Performática: partição pelo campo TRANSACTION_DATE.
 - Simples de manter: leitura das tabelas fonte e gravação diária dos dados.
 - Rastreável: com as colunas PROCESSING_DATE e CREATED_AT fica possível auditar quando cada registro foi processado.
 - Flexível: se precisar reprocessar um dia específico, podemos usar a TRANSACTION_DATE sem afetar os registros passados.
