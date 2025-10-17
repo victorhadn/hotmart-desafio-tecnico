@@ -55,7 +55,7 @@ fact_gmv = (
         countDistinct("purchase_id").alias("transaction_count")
     )
     .withColumn("processing_date", lit(processing_date))
-    .withColumn("created_at", current_timestamp())
+    .withColumn("transaction_datetime", current_timestamp())
 )
 
 # Escrevendo a tabela final em formato Delta
