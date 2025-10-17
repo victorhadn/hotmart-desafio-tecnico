@@ -1,0 +1,25 @@
+WITH ranked_products AS (
+    SELECT
+        P.PRODUCER_ID,
+        PI.PRODUCT_ID,
+        SUM(PI.PURCHASE_VALUE * PI.ITEM_QUANTITY) AS REVENUE,
+        RANK() OVER (
+            PARTITION BY P.PRODUCER_ID
+            ORDER BY SUM(PI.PURCHASE_VALUE * PI.ITEM_QUANTITY) DESC
+        ) AS RANK
+    FROM
+        PURCHASE P
+    JOIN 
+        PRODUCT_ITEM PI ON P.PROD_ITEM_ID = PI.PROD_ITEM_ID
+    GROUP BY
+        P.PRODUCER_ID, 
+        PI.PRODUCT_ID
+)
+SELECT
+    PRODUCER_ID,
+    PRODUCT_ID,
+    REVENUE
+FROM
+    ranked_products
+WHERE
+    RANK <= 2;
