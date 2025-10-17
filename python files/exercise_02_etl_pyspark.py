@@ -41,10 +41,15 @@ df_joined = (
     )
 )
 
-# Agregando GMV diário por tipo de subsidiária (nacional/internacional)
+# Definindo a data de processamento em D-1
 processing_date = date_sub(current_date(), 1)
+
+# Filtrando apenas transações do dia do processamento
+df_filtered = df_joined.filter(col("transaction_date") == processing_date)
+
+# Agregando GMV diário por tipo de subsidiária (nacional/internacional)
 fact_gmv = (
-    df_joined.groupBy("transaction_date", "subsidiary")
+    df_filtered.groupBy("transaction_date", "subsidiary")
     .agg(
         _sum("purchase_value").alias("gmv_amount"),
         countDistinct("purchase_id").alias("transaction_count")
