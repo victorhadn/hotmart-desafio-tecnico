@@ -20,7 +20,7 @@
 
 ### Exemplo do Dataset: FACT_DAILY_GMV_SUBSIDIARY:
 
-| TRANSACTION_DATE| SUBSIDIARY    | GMV_AMOUNT |TRANSACTION_COUNT |PROCESSING_DATE |      CREATED_AT     |
+| TRANSACTION_DATE| SUBSIDIARY    | GMV_AMOUNT |TRANSACTION_COUNT |PROCESSING_DATE | TRANSACTION_DATETIME|
 |-----------------|---------------|------------|----------------- |----------------|---------------------|
 | 2025-10-15      | nacional      | 12.500,50  |           120    | 2025-10-16     | 2025-10-16 08:00:00 |
 | 2025-10-15      | internacional | 9.800,75   |            95    | 2025-10-16     | 2025-10-16 09:00:00 |
