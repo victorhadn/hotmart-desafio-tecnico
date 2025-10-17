@@ -35,7 +35,7 @@ df_joined = (
     .join(purchase_extra.alias("pe"), col("p.purchase_id") == col("pe.purchase_id"), "inner")
     .select(
         col("p.transaction_date"),
-        col("pe.subsidiary").alias("subsidiary_id"),
+        col("pe.subsidiary"),
         col("p.purchase_id"),
         col("pi.purchase_value")
     )
@@ -44,7 +44,7 @@ df_joined = (
 # Agregando GMV diário por tipo de subsidiária (nacional/internacional)
 processing_date = date_sub(current_date(), 1)
 fact_gmv = (
-    df_joined.groupBy("transaction_date", "subsidiary_id")
+    df_joined.groupBy("transaction_date", "subsidiary")
     .agg(
         _sum("purchase_value").alias("gmv_amount"),
         countDistinct("purchase_id").alias("transaction_count")
