@@ -59,10 +59,9 @@ fact_gmv = (
 
 # Escrevendo a tabela final em formato Delta
 (
-    fact_gmv.write
-    .format("delta")
-    .mode("overwrite") 
-    .option("replaceWhere", f"transaction_date = '{processing_date}'")  
-    .partitionBy("transaction_date")
+fact_gmv.write \
+    .format("delta") \
+    .mode("append") \
+    .partitionBy("transaction_date") \
     .saveAsTable("FACT_DAILY_GMV_SUBSIDIARY")
 )
