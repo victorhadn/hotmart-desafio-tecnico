@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import (
-    col, sum as _sum, countDistinct, lit, current_timestamp
+    col, sum as _sum, countDistinct, lit, current_timestamp, current_date, date_sub
 )
 
 # Criando a sessão Spark
@@ -42,7 +42,7 @@ df_joined = (
 )
 
 # Agregando GMV diário por tipo de subsidiária (nacional/internacional)
-processing_date = "2025-10-16"  # D-1
+processing_date = date_sub(current_date(), 1)
 fact_gmv = (
     df_joined.groupBy("transaction_date", "subsidiary_id")
     .agg(
