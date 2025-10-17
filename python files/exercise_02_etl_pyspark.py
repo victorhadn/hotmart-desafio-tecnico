@@ -18,7 +18,6 @@ properties = {
     "password": "me_contrata_hotmart",
     "driver": "org.postgresql.Driver"
 }
-
 purchase = spark.read.jdbc(jdbc_url, "purchase", properties=properties)
 product_item = spark.read.jdbc(jdbc_url, "product_item", properties=properties)
 purchase_extra = spark.read.jdbc(jdbc_url, "purchase_extra_info", properties=properties)
